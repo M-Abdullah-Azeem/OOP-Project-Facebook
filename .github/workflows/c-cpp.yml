@@ -20,7 +20,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y g++
 
     - name: Compile C++ file
-      run: g++ ${{ github.event.inputs.cpp_file }} -o output
+      run: g++ ${{ github.event.inputs.cpp_file }} -o out
 
     - name: Run compiled program
-      run: ./output
+      run: ./out
