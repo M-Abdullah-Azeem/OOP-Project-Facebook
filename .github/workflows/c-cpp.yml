@@ -1,14 +1,14 @@
-name: C/C++ CI
+name: C++ Build and Test
 
 on:
   push:
     branches:
-      - main  # replace with your main branch name
-      - master  # add more branches as needed
+      - main
+      - master
   pull_request:
     branches:
-      - main  # replace with your main branch name
-      - master  # add more branches as needed
+      - main
+      - master
 
 jobs:
   build:
@@ -17,26 +17,24 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set up CMake
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y cmake
+    - name: Install g++
+      run: sudo apt-get install g++
 
-    - name: Build project
+    - name: Build and Run C++ Project
       run: |
-        mkdir build
-        cd build
-        cmake ..
-        make
+        g++ 22L-8227 OOP Project.cpp -o proj
+        ./proj
 
-    - name: Run tests
+    - name: Check Files Existence
       run: |
-        cd build
-        ctest --output-on-failure
+        ls -lh
 
-    - name: Upload test results
+    - name: Upload Build Artifacts
       if: always()
       uses: actions/upload-artifact@v2
       with:
-        name: Test Results
-        path: build/Testing/Temporary/LastTest.log
+        name: Project Artifacts
+        path: |
+          proj
+          22L-8227\ OOP\ Project.cpp
+          *.txt
