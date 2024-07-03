@@ -2,10 +2,7 @@
 <html>
 <head>
   <style>
-    body {
-      text-align: center;
-    }
-  </style>
+    
 </head>
 <body>
   <h1>OOP-Project-Facebook</h1>
