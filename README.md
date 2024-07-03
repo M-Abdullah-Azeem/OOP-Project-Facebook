@@ -2,7 +2,7 @@
 <html>
 <head>
   <style>
-    * {
+    body {
       text-align: center;
     }
   </style>
