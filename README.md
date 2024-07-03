@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
 * {
   align: center;
 }
+</style>
 </head>
 <body>
   <h1>OOP-Project-Facebook</h1>
