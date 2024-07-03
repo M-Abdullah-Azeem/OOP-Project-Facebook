@@ -1,26 +1,5 @@
-name: Compile and Run C++
-
-on:
-  workflow_dispatch:
-    inputs:
-      cpp_file:
-        description: 'C++ file to compile'
-        required: true
-        default: 'main.cpp'
-
-jobs:
-  compile_and_run:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Check out code
-      uses: actions/checkout@v2
-
-    - name: Install G++
-      run: sudo apt-get update && sudo apt-get install -y g++
-
-    - name: Compile C++ file
-      run: g++ ${{ github.event.inputs.cpp_file }} -o output
-
-    - name: Run compiled program
-      run: ./output
+    - name: Install compiler
+      id: install_cc
+      uses: rlalik/setup-cpp-compiler@master
+      with:
+        compiler: latest
