@@ -2,22 +2,41 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main  # replace with your main branch name
+      - master  # add more branches as needed
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main  # replace with your main branch name
+      - master  # add more branches as needed
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - uses: actions/checkout@v2
+
+    - name: Set up CMake
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake
+
+    - name: Build project
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        make
+
+    - name: Run tests
+      run: |
+        cd build
+        ctest --output-on-failure
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: Test Results
+        path: build/Testing/Temporary/LastTest.log
