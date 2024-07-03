@@ -1,40 +1,26 @@
-name: C++ Build and Test
+name: Compile and Run C++
 
 on:
-  push:
-    branches:
-      - main
-      - master
-  pull_request:
-    branches:
-      - main
-      - master
+  workflow_dispatch:
+    inputs:
+      cpp_file:
+        description: 'C++ file to compile'
+        required: true
+        default: 'main.cpp'
 
 jobs:
-  build:
+  compile_and_run:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Check out code
+      uses: actions/checkout@v2
 
-    - name: Install g++
-      run: sudo apt-get install g++
+    - name: Install G++
+      run: sudo apt-get update && sudo apt-get install -y g++
 
-    - name: Build and Run C++ Project
-      run: |
-        g++ 22L-8227\ OOP\ Project.cpp -o my_project
-        ./my_project
+    - name: Compile C++ file
+      run: g++ ${{ github.event.inputs.cpp_file }} -o output
 
-    - name: Check Files Existence
-      run: |
-        ls -lh
-
-    - name: Upload Build Artifacts
-      if: always()
-      uses: actions/upload-artifact@v2
-      with:
-        name: Project Artifacts
-        path: |
-          my_project
-          22L-8227\ OOP\ Project.cpp
-          *.txt
+    - name: Run compiled program
+      run: ./output
