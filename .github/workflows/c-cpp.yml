@@ -8,19 +8,3 @@ on:
         required: true
         default: 'main.cpp'
 
-jobs:
-  compile_and_run:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Check out code
-      uses: actions/checkout@v2
-
-    - name: Install G++
-      run: sudo apt-get update && sudo apt-get install -y g++
-
-    - name: Compile C++ file
-      run: g++ ${{ github.event.inputs.cpp_file }} -o output
-
-    - name: Run compiled program
-      run: ./output
