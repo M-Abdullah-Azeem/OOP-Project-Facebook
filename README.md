@@ -2,7 +2,7 @@
 <html>
 <head>
 * {
-  align:"center";
+  align: center;
 }
 </head>
 <body>
