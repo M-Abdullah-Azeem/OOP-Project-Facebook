@@ -22,8 +22,8 @@ jobs:
 
     - name: Build and Run C++ Project
       run: |
-        g++ 22L-8227 OOP Project.cpp -o proj
-        ./proj
+        g++ 22L-8227\ OOP\ Project.cpp -o my_project
+        ./my_project
 
     - name: Check Files Existence
       run: |
@@ -35,6 +35,6 @@ jobs:
       with:
         name: Project Artifacts
         path: |
-          proj
+          my_project
           22L-8227\ OOP\ Project.cpp
           *.txt
