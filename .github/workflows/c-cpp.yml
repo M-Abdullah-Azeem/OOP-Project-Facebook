@@ -1,5 +1,0 @@
-    - name: Use compiler
-        shell: bash
-        env:
-            CC: ${{ steps.install_cc.outputs.cc }}
-            CXX: ${{ steps.install_cc.outputs.cxx }}
