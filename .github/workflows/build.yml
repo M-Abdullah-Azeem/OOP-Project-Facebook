@@ -35,4 +35,4 @@ jobs:
       - name: Build and Test C++ File
         run: |
           g++ -o my_program ${{ github.workspace }}/${{ github.event.inputs.cpp_filename }}
-          ./my_program
+          ./my_program  # Run the compiled program and capture output
